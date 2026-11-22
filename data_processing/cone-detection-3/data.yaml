@@ -1,0 +1,16 @@
+names:
+- blue_cone
+- large_orange_cone
+- orange_cone
+- unknown_cone
+- yellow_cone
+nc: 5
+roboflow:
+  license: CC BY 4.0
+  project: cone-detection-v7sp1
+  url: https://universe.roboflow.com/utfrdv/cone-detection-v7sp1/dataset/3
+  version: 3
+  workspace: utfrdv
+test: ../test/images
+train: ../train/images
+val: ../valid/images

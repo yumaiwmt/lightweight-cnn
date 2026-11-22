@@ -1,0 +1,71 @@
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Generated dependency checkouts and local caches
+/vendor/
+/.sources/
+/.cache/
+
+# Local credentials
+.env
+.env.*
+!.env.example
+!.env.template
+.netrc
+_netrc
+
+# Downloaded dataset splits (keep dataset YAML and metadata)
+/data/
+/data_processing/cone-detection-*/train/
+/data_processing/cone-detection-*/valid/
+/data_processing/cone-detection-*/test/
+*.cache
+
+# Generated data-processing reports
+/data_processing/data_processing_report/
+
+# Training runs, checkpoints, and exported models
+runs/
+wandb/
+yolo11n-training/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+*.torchscript
+*.log
+
+# Report and LaTeX build artifacts
+/report/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~

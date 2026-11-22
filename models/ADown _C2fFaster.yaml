@@ -1,0 +1,39 @@
+# Experimental adaptation using open-source blocks; see train/custom_modules/SOURCES.md.
+# Knowledge distillation is not part of this training configuration.
+
+
+#Paper’s proposed model (YOLOv8 as base model):
+# Replace 3 × 3 convolutional kernels used for downsampling backbone network with lightweight downsampling convolutional ADown in YOLOv9. 
+# Use FasterBlock containing PConv to replace the Bottleneck in C2f, since PConv in the FasterNet achieves higher operating speed than other networks without affecting accuracy of visual tasks.
+# Improve detection head using shared convolution, since detection head accounts for 40% of the parametric and computational quantities. Also, while using shared parameters, scale features using a Scale layer.
+# Use knowledge distillation.
+
+nc: 5
+scales:
+  n: [0.33, 0.25, 1024]
+scale: n
+backbone:
+  - [-1, 1, Conv, [64, 3, 2]]           # 0 P1/2 (stem unchanged)
+  - [-1, 1, ADown, [128]]               # 1 P2/4
+  - [-1, 3, C2fFaster, [128, True]]     # 2
+  - [-1, 1, ADown, [256]]               # 3 P3/8
+  - [-1, 6, C2fFaster, [256, True]]     # 4
+  - [-1, 1, ADown, [512]]               # 5 P4/16
+  - [-1, 6, C2fFaster, [512, True]]     # 6
+  - [-1, 1, ADown, [1024]]              # 7 P5/32
+  - [-1, 3, C2fFaster, [1024, True]]    # 8
+  - [-1, 1, SPPF, [1024, 5]]            # 9
+head:
+  - [-1, 1, nn.Upsample, [None, 2, nearest]]
+  - [[-1, 6], 1, Concat, [1]]
+  - [-1, 3, C2fFaster, [512]]           # 12
+  - [-1, 1, nn.Upsample, [None, 2, nearest]]
+  - [[-1, 4], 1, Concat, [1]]
+  - [-1, 3, C2fFaster, [256]]           # 15 P3/8
+  - [-1, 1, Conv, [256, 3, 2]]
+  - [[-1, 12], 1, Concat, [1]]
+  - [-1, 3, C2fFaster, [512]]           # 18 P4/16
+  - [-1, 1, Conv, [512, 3, 2]]
+  - [[-1, 9], 1, Concat, [1]]
+  - [-1, 3, C2fFaster, [1024]]          # 21 P5/32
+  - [[15, 18, 21], 1, LSDECD, [nc, 256]] # hidden channels scale to 64 for nano
