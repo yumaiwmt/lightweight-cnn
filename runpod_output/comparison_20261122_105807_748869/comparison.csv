@@ -1,0 +1,2 @@
+model,best_weights,training_seconds,validation_seconds,mAP50,mAP50-95
+ADown _C2fFaster,/root/lightweight-cnn/runs/comparison_20261122_105807_748869/ADown__C2fFaster/weights/best.pt,25308.6,86.0,0.6366672443154427,0.4172910124792654

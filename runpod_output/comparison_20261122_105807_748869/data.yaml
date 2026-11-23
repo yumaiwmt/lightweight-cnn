@@ -1,0 +1,11 @@
+path: /workspace/roboflow-test-letterboxed-2880x2880
+nc: 5
+names:
+  0: blue_cone
+  1: large_orange_cone
+  2: orange_cone
+  3: unknown_cone
+  4: yellow_cone
+train: train/images
+val: valid/images
+test: test/images

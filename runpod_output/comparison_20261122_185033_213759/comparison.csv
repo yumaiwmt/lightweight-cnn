@@ -1,0 +1,2 @@
+model,best_weights,training_seconds,validation_seconds,mAP50,mAP50-95
+GSConv_VoV-GSCP1,/root/lightweight-cnn/runs/comparison_20261122_185033_213759/GSConv_VoV-GSCP1/weights/best.pt,24929.4,83.4,0.650905876483454,0.4348964389308273

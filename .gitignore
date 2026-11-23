@@ -49,8 +49,20 @@ yolo11n-training/
 *.torchscript
 *.log
 
-# Report and LaTeX build artifacts
+# Keep lightweight RunPod notebooks, metrics, and configuration files.
+# Ignore generated images, checkpoints, archives, and W&B artifacts.
+/runpod_output/**
+!/runpod_output/**/
+!/runpod_output/**/*.ipynb
+!/runpod_output/**/*.csv
+!/runpod_output/**/*.yaml
+!/runpod_output/**/*.yml
+/runpod_output/**/wandb/
+
+# Entire report folder, including sources, figures, PDFs, and build files
 /report/
+
+# LaTeX build artifacts
 *.aux
 *.bbl
 *.blg
